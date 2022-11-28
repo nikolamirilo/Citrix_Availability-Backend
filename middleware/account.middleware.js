@@ -1,6 +1,6 @@
 const Account = require("../models/account.model");
 
-const getSingleAccount = async (req, res, next) => {
+const getSingleUser = async (req, res, next) => {
   let account;
   try {
     account = await Account.findById(req.params.id);
@@ -14,4 +14,4 @@ const getSingleAccount = async (req, res, next) => {
   next();
 };
 
-module.exports = getSingleAccount;
+module.exports = getSingleUser;

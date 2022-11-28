@@ -1,17 +1,12 @@
 const express = require("express");
 const getSingleAccount = require("../middleware/account.middleware");
-const {
-  addAccount,
-  deleteAccount,
-  getAllAccounts,
-  updateAccount,
-} = require("../controllers/account.controller");
+const { addAccount, deleteAccount, getAllAccounts, updateAccount } = require("../controllers/account.controller");
 
-const routes = express.Router();
+const accountRoutes = express.Router();
 
-routes.get("/", getAllAccounts);
-routes.post("/", addAccount);
-routes.patch("/:id", getSingleAccount, updateAccount);
-routes.delete("/:id", getSingleAccount, deleteAccount);
+accountRoutes.get("/", getAllAccounts);
+accountRoutes.post("/", addAccount);
+accountRoutes.patch("/:id", getSingleAccount, updateAccount);
+accountRoutes.delete("/:id", getSingleAccount, deleteAccount);
 
-module.exports = routes;
+module.exports = accountRoutes;

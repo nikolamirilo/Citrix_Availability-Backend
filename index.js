@@ -4,7 +4,8 @@ let cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
-const routes = require("./routes/account.routes");
+const userRoutes = require("./routes/user.routes");
+const accountRoutes = require("./routes/account.routes");
 
 mongoose.connect(process.env.DATABASE_URL);
 
@@ -18,9 +19,15 @@ db.once("open", () => {
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/accounts", routes);
+app.use("/accounts", accountRoutes);
+app.use("/users", userRoutes);
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:5000");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://citrix-availability.up.railway.app");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });

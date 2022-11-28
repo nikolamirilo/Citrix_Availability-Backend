@@ -1,10 +1,10 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
-let cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
-const routes = require("./routes/routes");
+const routes = require("./routes/account.routes");
 
 mongoose.connect(process.env.DATABASE_URL);
 
